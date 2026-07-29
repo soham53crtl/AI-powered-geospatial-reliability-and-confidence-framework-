@@ -68,7 +68,11 @@ export const ActiveRegionsGrid: React.FC<ActiveRegionsGridProps> = ({
 
                 <div className="space-y-1 pt-1 border-t border-[#2A303D]/60 text-[11px]">
                   <div className="text-[#8E95A5] truncate">{zone.disasterType}</div>
-                  <div className="text-[#8E95A5] text-[10px] truncate">{zone.stateRegion}</div>
+                    <div className="text-[#8E95A5] text-[10px] truncate">
+                        {!zone.targetTownVillage.startsWith('Not available') ? zone.targetTownVillage
+                         : !zone.subDistrictDistrict.startsWith('Not available') ? zone.subDistrictDistrict
+                         : zone.stateRegion}
+                    </div>
                 </div>
 
                 <div className="flex items-center justify-between pt-1">

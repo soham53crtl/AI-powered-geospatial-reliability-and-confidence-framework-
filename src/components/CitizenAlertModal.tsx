@@ -151,8 +151,11 @@ export const CitizenAlertModal: React.FC<CitizenAlertModalProps> = ({
                   <MapPin className="w-3.5 h-3.5" />
                   Primary Hazard Origin — ALERT ACTIVE
                 </div>
-                <div className="text-sm font-bold text-white">{selectedZone.targetTownVillage}</div>
-                <div className="text-[10px] font-mono text-[#38BDF8]">
+<div className="text-sm font-bold text-white">
+  {!selectedZone.targetTownVillage.startsWith('Not available') ? selectedZone.targetTownVillage
+    : !selectedZone.subDistrictDistrict.startsWith('Not available') ? selectedZone.subDistrictDistrict
+    : selectedZone.stateRegion}
+</div>                <div className="text-[10px] font-mono text-[#38BDF8]">
                   📍 {selectedZone.coordinates[0].toFixed(4)}° N, {selectedZone.coordinates[1].toFixed(4)}° E
                 </div>
                 <div className="text-[10px] text-[#8E95A5]">
