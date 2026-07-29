@@ -1,4 +1,4 @@
-﻿from sqlalchemy import Column, Integer, String, Float, Text, DateTime, ForeignKey
+﻿from sqlalchemy import Column, Integer, String, Float, Text, DateTime, ForeignKey, Boolean
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from database import Base
@@ -36,6 +36,9 @@ class Insight(Base):
     town_village = Column(String, nullable=True)
     district = Column(String, nullable=True)
     state = Column(String, nullable=True)
+    weather_used = Column(Boolean, nullable=True)
+    osm_used = Column(Boolean, nullable=True)
+    satellite_used = Column(Boolean, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
 
     source = relationship("DataSource", back_populates="insights")

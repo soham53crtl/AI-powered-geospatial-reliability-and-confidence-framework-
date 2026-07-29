@@ -32,6 +32,9 @@ class InsightCreate(BaseModel):
     town_village: Optional[str] = None
     district: Optional[str] = None
     state: Optional[str] = None
+    weather_used: Optional[bool] = None
+    osm_used: Optional[bool] = None
+    satellite_used: Optional[bool] = None
 
 
 class InsightOut(InsightCreate):
