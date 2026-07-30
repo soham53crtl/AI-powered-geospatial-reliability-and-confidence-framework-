@@ -5,6 +5,7 @@ import time
 BASE_URL = "https://ai-powered-geospatial-reliability-and-1mxp.onrender.com"
 
 df = pd.read_csv("earthquakes_clean.csv")
+df = df[df['region'].str.contains('Delhi', case=False, na=False)].head(1)
 df = df.head(1)  # test with 5 rows first
 
 for _, row in df.iterrows():

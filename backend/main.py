@@ -10,6 +10,13 @@ import ingestion
 from database import engine, get_db, Base
 
 Base.metadata.create_all(bind=engine)
+from sqlalchemy import text
+
+with engine.connect() as conn:
+    conn.execute(text("ALTER TABLE insights ADD COLUMN IF NOT EXISTS weather_used BOOLEAN"))
+    conn.execute(text("ALTER TABLE insights ADD COLUMN IF NOT EXISTS osm_used BOOLEAN"))
+    conn.execute(text("ALTER TABLE insights ADD COLUMN IF NOT EXISTS satellite_used BOOLEAN"))
+    conn.commit()
 
 app = FastAPI(title="PS07 Geospatial AI Backend", version="1.0")
 
@@ -356,6 +363,9 @@ def analyze_location(lat: float, lon: float, title: str, summary: str, db: Sessi
         town_village=town,
         district=district,
         state=state,
+        weather_used=weather_obs is not None,
+        osm_used=osm_obs is not None,
+        satellite_used=sentinel_obs is not None,
     )
     db.add(insight)
     db.commit()
